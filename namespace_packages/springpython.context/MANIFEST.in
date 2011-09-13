@@ -1,0 +1,7 @@
+recursive-include debian *.*
+recursive-include tests *.*
+include buildout.cfg
+include Changelog
+include License
+include Makefile
+include README.rst
