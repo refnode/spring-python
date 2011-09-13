@@ -1,18 +1,26 @@
-"""
-   Copyright 2006-2008 SpringSource (http://springsource.com), All Rights Reserved
+# Copyright 2006-2011, SpringSource - http://springsource.com
+# All Rights Reserved
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
 
-       http://www.apache.org/licenses/LICENSE-2.0
+# __all__ = []
 
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
-"""
+# import std
+# import third party
+# import local
+
+
 import re
 import types
 import inspect
@@ -31,7 +39,8 @@ def get_string(value):
         return str(value)
     except UnicodeEncodeError:
         return unicode(value)
-        
+
+
 class ObjectDef(object):
     """
     ObjectDef is a format-neutral way of storing object definition information. It includes
@@ -57,6 +66,7 @@ class ObjectDef(object):
     def __str__(self):
         return "id=%s props=%s scope=%s factory=%s" % (self.id, self.props, self.scope, self.factory)
 
+
 class ReferenceDef(object):
     """
     This class represents a definition that is referencing another object.
@@ -76,6 +86,7 @@ class ReferenceDef(object):
 
     def __str__(self):
         return "name=%s ref=%s" % (self.name, self.ref)
+
 
 class InnerObjectDef(object):
     """
@@ -97,6 +108,7 @@ class InnerObjectDef(object):
 
     def __str__(self):
         return "name=%s inner_comp=%s" % (self.name, self.inner_comp)
+
 
 class ValueDef(object):
     """
@@ -158,6 +170,7 @@ class ValueDef(object):
     def __str__(self):
         return "name=%s value=%s" % (self.name, self.value)
 
+
 class DictDef(ValueDef):
     """Handles behavior for a dictionary-based value."""
     def __init__(self, name, value):
@@ -169,6 +182,7 @@ class DictDef(ValueDef):
                 self.value[key] = container.get_object(self.value[key].ref)
             else:
                 self.value[key] = self.scan_value(container, self.value[key])
+
 
 class ListDef(ValueDef):
     """Handles behavior for a list-based value."""
@@ -183,6 +197,7 @@ class ListDef(ValueDef):
                 self.value[i] = container.get_object(self.value[i].ref)
             else:
                 self.value[i] = self.scan_value(container, self.value[i])
+
 
 class TupleDef(ValueDef):
     """Handles behavior for a tuple-based value."""
@@ -202,6 +217,7 @@ class TupleDef(ValueDef):
         except AttributeError:
             pass
         return tuple(new_value)
+
 
 class SetDef(ValueDef):
     """Handles behavior for a set-based value."""
@@ -238,6 +254,7 @@ class SetDef(ValueDef):
         except AttributeError:
             pass
         return new_set
+
 
 class FrozenSetDef(ValueDef):
     """Handles behavior for a frozen-set-based value."""
@@ -281,6 +298,7 @@ class FrozenSetDef(ValueDef):
             pass
         return new_frozen_set
 
+
 class Config(object):
     """
     Config is an interface that defines how to read object definitions from an input source.
@@ -288,4 +306,3 @@ class Config(object):
     def read_object_defs(self):
         """Abstract method definition - should return an array of Object objects"""
         raise NotImplementedError()
-
