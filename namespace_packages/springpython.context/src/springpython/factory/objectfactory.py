@@ -1,25 +1,32 @@
-"""
-   Copyright 2006-2008 SpringSource (http://springsource.com), All Rights Reserved
+# Copyright 2006-2011, SpringSource - http://springsource.com
+# All Rights Reserved
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
 
-       http://www.apache.org/licenses/LICENSE-2.0
+#__all__ = []
 
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.       
-"""
-
+# import std
 import logging
 import sys
+# import third party
+# import local
+
 
 class ObjectFactory(object):
     def create_object(self, constr, named_constr):
         raise NotImplementedError()
+
 
 class ReflectiveObjectFactory(ObjectFactory):
     def __init__(self, module_and_class):
@@ -38,9 +45,9 @@ class ReflectiveObjectFactory(ObjectFactory):
             cls = getattr(sys.modules[module_name], class_name)
             return cls(*constr, **named_constr)
 
-
     def __str__(self):
         return "ReflectiveObjectFactory(%s)" % self.module_and_class
+
 
 class PythonObjectFactory(ObjectFactory):
     def __init__(self, method, wrapper):
