@@ -18,7 +18,7 @@
 /docs/make.bat
 
 ### Eclipse Patterns
-.project
+#.project
 .pydevproject
 .settings
 
