@@ -32,6 +32,7 @@ from springpython.meta.springpython_context import __meta__
 # Declare namespace packages
 __namespace_packages__ = [
     'springpython',
+    'springpython.config',
     'springpython.context',
     'springpython.factory'
 ]
