@@ -31,4 +31,4 @@ def convert(scope_str):
     elif scope_str == "singleton":
         return SINGLETON
     else:
-        raise Exception("Can not handle scope %s" % s)
+        raise Exception("Can not handle scope %s" % scope_str)
