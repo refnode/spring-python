@@ -17,21 +17,21 @@
 # __all__ = []
 
 # import std
+import logging
 # import third party
 # import local
-
-
-import re
-import types
-import inspect
-import logging
-
 from springpython.context import scope
-from decorator import decorator, partial
-from springpython.context import ApplicationContextAware
-from springpython.factory import PythonObjectFactory
-from springpython.factory import ReflectiveObjectFactory
-from springpython.container import InvalidObjectScope
+
+# Not necessary imports
+#import re
+#import types
+#import inspect
+#from decorator import decorator, partial
+#from springpython.context import ApplicationContextAware
+#from springpython.factory import PythonObjectFactory
+#from springpython.factory import ReflectiveObjectFactory
+#from springpython.container import InvalidObjectScope
+
 
 def get_string(value):
     """This function is used to parse text that could either be ASCII or unicode."""
@@ -159,6 +159,7 @@ class ValueDef(object):
 
     def set_value(self, obj, container):
         setattr(obj, self.name, self.value)
+        # FIXME: Any sense return val?
         val = self._replace_refs_with_actuals(obj, container)
 
     def _replace_refs_with_actuals(self, obj, container):
