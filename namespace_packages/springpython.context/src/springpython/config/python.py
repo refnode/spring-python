@@ -13,26 +13,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-try:
-    import cElementTree as etree
-except ImportError:
-    try:
-        import xml.etree.ElementTree as etree
-    except ImportError:
-        from elementtree import ElementTree as etree
 
-import re
-import types
+# __all__ = []
+
+# import std
 import inspect
 import logging
-
-from _config_base import *
-from springpython.context import scope
-from decorator import decorator, partial
+import types
+# import third party
+from decorator import decorator
+# import local
+from springpython.config.base import *
+from springpython.container.objectcontainer import InvalidObjectScope
 from springpython.context import ApplicationContextAware
-from springpython.factory import PythonObjectFactory
-from springpython.factory import ReflectiveObjectFactory
-from springpython.container import InvalidObjectScope
+from springpython.factory.objectfactory import PythonObjectFactory
+from springpython.context import scope
+
 
 class PythonConfig(Config, ApplicationContextAware):
     """
