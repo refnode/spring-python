@@ -1,18 +1,18 @@
-"""
-   Copyright 2006-2008 SpringSource (http://springsource.com), All Rights Reserved
+# Copyright 2006-2011, SpringSource - http://springsource.com
+# All Rights Reserved
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
-"""
 try:
     import cElementTree as etree
 except ImportError:
@@ -74,6 +74,7 @@ _pythonConfigMethods = [name for (name, method) in inspect.getmembers(PythonConf
 
 _object_context = {}
 
+
 def _object_wrapper(f, scope, parent, log_func_name, *args, **kwargs):
     """
     This function checks if the object already exists in the container. If so,
@@ -119,6 +120,7 @@ def _object_wrapper(f, scope, parent, log_func_name, *args, **kwargs):
             return results
 
     return _deco(f, scope, parent, log_func_name, *args, **kwargs)
+
 
 def Object(theScope=scope.SINGLETON, lazy_init=False, abstract=False, parent=None):
     """
