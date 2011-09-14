@@ -47,6 +47,7 @@ __package_data__ = [
 
 __install_requires__ = [
     'setuptools',
+    'decorator'
 ]
 
 
