@@ -247,8 +247,7 @@ class YamlConfig(Config):
         if "properties" in obj:
             self.logger.debug("%sproperties:" % ("\t"*(level+1)))
             for prop in obj["properties"].keys():
-                value = obj["properties"][prop]
-                if isinstance(value, dict) and "class" in value:
+                if "object" in obj["properties"][prop]:
                     self.logger.debug("%s%s = ..." % ("\t"*(level+2), prop))
                     self._print_obj(obj["properties"][prop], level+3)
                 else:
